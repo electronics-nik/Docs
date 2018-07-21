@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<title>Error</title>
+	<style type="text/css">
+	body{text-align:center;font-family:serif;}
+	.jump_body {padding:20px; max-width:600px; margin:0 auto; text-align:left;}
+	a{text-decoration:none;color:#009FDA;}
+	a:hover{text-decoration:underline;color:#00B2F3;}
+	.ui.message {
+		position: relative;
+		min-height: 1em;
+		margin: 1em 0;
+		padding: 1em 1.5em;
+		line-height: 1.3;
+		border-radius: .2857rem;
+		background-color: #EFEFEF;
+	}
+	.ui.positive.message {background-color:#EEFFE7;color:#3C763D;box-shadow: 0 0 0 1px #B7CAA7 inset,0 1px 2px 0 rgba(0, 0, 0, 0.05);}
+	.ui.negative.message {background-color:#FFF0F0;color:#A94442;box-shadow: 0 0 0 1px #DBB1B1 inset,0 1px 2px 0 rgba(0, 0, 0, 0.05);}
+	</style>
+</head>
+<body>
+
+<div class='ui jump_body'>
+	<div class="top-logo">
+		<a href="/" class="header item"><img src="/assets/static/images/logo-140x39.png" alt="EasyEDA | easyeda.com"/></a>
+	</div>
+
+			<div class="ui negative message">
+			<div class="content">Unknow error</div>
+		</div>
+	
+	<p class="jump">
+		This page will redirect to <a id="href" href="javascript:history.back(-1);">the destination</a> in <b id="wait">3</b> seconds.
+	</p>
+</div>
+
+<script>
+(function(){
+	var wait = document.getElementById('wait'),
+		href = document.getElementById('href').href,
+		time = +wait.innerHTML | 0;
+	function heartbreak(){
+		if(time <= 0){
+			location.replace(href);
+		}else{
+			wait.innerHTML = --time;
+			setTimeout(heartbreak, 1000);
+		}
+	}
+	setTimeout(heartbreak, 1000);
+})();
+</script>
+
+</body>
+</html>
